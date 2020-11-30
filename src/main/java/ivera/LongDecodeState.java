@@ -34,7 +34,7 @@ public class LongDecodeState {
         Path path = Files.createTempFile("LongDecodeState", ".bench");
         try (FileChannel channel = FileChannel.open(path, StandardOpenOption.APPEND, StandardOpenOption.WRITE)) {
             byte[] data = new byte[count * Long.BYTES];
-            new Random(7668).nextBytes(data);
+            new Random(0).nextBytes(data);
             channel.write(ByteBuffer.wrap(data));
         }
         channel = FileChannel.open(path, StandardOpenOption.READ);
@@ -46,8 +46,7 @@ public class LongDecodeState {
         } else {
             throw new IllegalArgumentException();
         }
-
-        // Some of these arrays are larger than 128 because some decoders need some padding bytes.
+        
         outputLongs = new long[count];
     }
 
